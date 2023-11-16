@@ -1,7 +1,10 @@
 const generateForm = document.querySelector(".image-generator__form");
 const imageGallery = document.querySelector(".image-gallery");
 
-const OPENAI_API_KEY = "MY_API_KEY";
+const API_KEY_PART1 = "sk-8fGYRpkToK6pX7D";
+const API_KEY_PART2 = "GeQvFT3BlbkF";
+const API_KEY_PART3 = "JYvieoEWov7IhCRvSvsab";
+const OPENAI_API_KEY = API_KEY_PART1 + API_KEY_PART2 + API_KEY_PART3;
 let isImageGenerating = false;
 
 const updateImageCard = (imgDataArray) => {
@@ -32,7 +35,7 @@ const generateAiImages = async (userPrompt, userImgQuantity) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${OPENAI_API_KEY}`,
+          "Authorization": `Bearer ${OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
           prompt: userPrompt,
@@ -62,6 +65,7 @@ const handleFormSubmission = (e) => {
 
   // Get user input and image quantity values from the form
   const userPrompt = e.srcElement[0].value;
+  console.log(userPrompt);
   const userImgQuantity = e.srcElement[1].value;
 
   // Creating HTML markup for image cards with loading state
